@@ -34,7 +34,12 @@ def analyze_url(url):
         'skip_download': True,
         'quiet': True,
         'no_warnings': True,
-        'extract_flat': False
+        'extract_flat': False,
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android', 'ios']
+            }
+        }
     }
     
     if os.path.exists(cookies_path):
@@ -153,6 +158,11 @@ def download_media(url, format_id, download_dir):
         'outtmpl': out_tmpl,
         'quiet': True,
         'no_warnings': True,
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['android', 'ios']
+            }
+        }
     }
     
     if os.path.exists(cookies_path):
