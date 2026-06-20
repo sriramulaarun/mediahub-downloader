@@ -87,6 +87,34 @@ def create_app():
     # Serve React Frontend Static Assets
     dist_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'frontend', 'dist'))
     
+    @app.route('/api/debug-ffmpeg')
+    def debug_ffmpeg():
+        import shutil
+        import subprocess
+        ffmpeg_shutil = shutil.which('ffmpeg')
+        ffmpeg_exe = shutil.which('ffmpeg.exe')
+        
+        # Try running which ffmpeg
+        try:
+            which_out = subprocess.check_output(['which', 'ffmpeg'], stderr=subprocess.STDOUT).decode().strip()
+        except Exception as e:
+            which_out = f"Error running which: {str(e)}"
+            
+        try:
+            where_out = subprocess.check_output(['whereis', 'ffmpeg'], stderr=subprocess.STDOUT).decode().strip()
+        except Exception as e:
+            where_out = f"Error running whereis: {str(e)}"
+            
+        return jsonify({
+            'ffmpeg_shutil': ffmpeg_shutil,
+            'ffmpeg_exe': ffmpeg_exe,
+            'which_out': which_out,
+            'where_out': where_out,
+            'path_env': os.environ.get('PATH', ''),
+            'nixpacks_exists': os.path.exists('nixpacks.toml'),
+            'nixpacks_root_exists': os.path.exists('../nixpacks.toml')
+        }), 200
+
     @app.route('/', defaults={'path': ''})
     @app.route('/<path:path>')
     def serve_frontend(path):
