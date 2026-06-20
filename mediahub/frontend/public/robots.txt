@@ -1,0 +1,23 @@
+# robots.txt for MediaHub Downloader
+User-agent: *
+Allow: /
+Allow: /blog
+Allow: /contact
+Allow: /youtube-downloader
+Allow: /instagram-downloader
+Allow: /mp3-downloader
+Allow: /facebook-downloader
+Allow: /video-downloader
+
+# Disallow Private User & Admin Panels
+Disallow: /dashboard
+Disallow: /history
+Disallow: /favorites
+Disallow: /profile
+Disallow: /settings
+Disallow: /admin
+Disallow: /login
+Disallow: /register
+Disallow: /forgot-password
+
+Sitemap: https://mediahub.download/sitemap.xml

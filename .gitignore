@@ -1,0 +1,20 @@
+# Node dependencies
+mediahub/frontend/node_modules/
+mediahub/frontend/dist/
+mediahub/frontend/.env.local
+mediahub/frontend/.env.development.local
+mediahub/frontend/.env.production.local
+
+# Python virtual env
+mediahub/backend/venv/
+mediahub/backend/.env
+mediahub/backend/downloads/*
+!mediahub/backend/downloads/.gitkeep
+
+# Local database
+mediahub/database/mediahub.db
+
+# System files
+.DS_Store
+Thumbs.db
+*.log
